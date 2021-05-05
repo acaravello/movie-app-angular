@@ -1,0 +1,15 @@
+
+
+<div class="movies-list-container">
+    <div class="cards-container" >
+      <div class="card" *ngFor="let movie of moviesList">
+        <img [src]="imageRootPath + movie.poster_path" class="card-img-top" [alt]="movie.title" />
+        <div class="card-body">
+          <h5 class="card-title">{{movie.title}}</h5>
+          <p class="card-text">
+            {{movie.overview}}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,74 @@
+
+
+ .movies-list-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 48px auto 24px auto;
+
+    .button-container {
+      width: 200px;
+      display: flex;
+      justify-content: center;
+      margin:auto;
+    }
+
+    .cards-container {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      width: 100%;
+      justify-content: center;
+
+      .card {
+            display: flex;
+            min-width: 0;
+            background-clip: border-box;
+            border-radius: 0px;
+            flex-direction: column;
+            width: 18rem;
+            margin-left: 24px;
+            margin-right: 24px;
+            margin-bottom: 48px;
+            border:none;
+            box-shadow:  0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+            cursor: pointer;
+            opacity:1;
+            transition: opacity 0.8s ease;
+            background: linear-gradient(to top, #212121, #D81B60);
+            transform: none;
+            transition: opacity 800ms ease, transform 800ms ease;
+
+            &:hover {
+              opacity: 0.9;
+              transform: translateY(-5px);
+            }
+
+            h5 {
+              line-height: 1.7rem;
+              text-transform: uppercase;
+              border-bottom: 1px solid #00b35f;
+              padding-bottom: 5px;
+              color: #E1E2E1;
+              font-size: 14px;
+            }
+
+            img {
+              border-radius: 0px;
+            }
+
+            .card-body {
+            background: #35495E;
+            background: linear-gradient(to top, #212121, #D81B60);
+
+              .card-text {
+              font-size: 13px;
+              line-height: 22px;
+              color: #fff;
+              }
+
+            }
+      }
+    }
+
+  }

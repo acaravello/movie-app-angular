@@ -1,0 +1,33 @@
+
+
+.navigation-navbar {
+    position: fixed;
+    top: 0;
+    z-index: 2;
+    height: 60px;
+    background-color: #d81b60;
+    color: #fff;
+    box-shadow: 0 3px 5px -1px rgb(0 0 0 / 20%), 0 6px 10px 0 rgb(0 0 0 / 14%), 0 1px 18px 0 rgb(0 0 0 / 12%);
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 8px 16px;
+    justify-content: center;
+    text-transform: uppercase;
+
+    a.mat-button {
+        text-decoration: none;
+        font-size: 17px;
+        font-weight: 300;
+
+        &.active {
+            color:#e0e0e0;
+            font-weight: 500;
+        }
+
+        &:hover {
+            color: #fff;
+        }
+    }
+}
