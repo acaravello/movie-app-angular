@@ -13,7 +13,7 @@ export class PopularMoviesService implements Resolve<any>
 {
 
     onMovieListChanged: BehaviorSubject<any>;
-    popularMovies: any[];
+    popularMovies: any[]; 
     
     constructor(
         private httpClient: HttpClient,
@@ -41,8 +41,6 @@ export class PopularMoviesService implements Resolve<any>
     getPopularMovies(): Promise<any> {
 
             return new Promise((resolve, reject) => { 
-
-                resolve(null);
 
                 let reqHeader = new HttpHeaders({ 
                     'Content-Type': 'application/json',

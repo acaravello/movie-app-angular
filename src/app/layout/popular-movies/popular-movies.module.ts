@@ -11,7 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { PopularMoviesComponent } from './popular-movies.component';
 import { PopularMoviesService } from './popular-movies.service';
-import { MatCardModule } from '@angular/material';
+import { MatCardModule, MatSelectModule } from '@angular/material';
 
 
 const routes: Routes = [
@@ -36,6 +36,7 @@ const routes: Routes = [
         MatCheckboxModule,
         MatDatepickerModule,
         MatFormFieldModule,
+        MatSelectModule,
         MatIconModule,
         MatInputModule,
         MatMenuModule,

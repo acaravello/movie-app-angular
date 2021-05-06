@@ -1,2 +1,53 @@
 
-<h1>Movie detail Component</h1>
+
+<div class="detail-container">
+    <div class="detail">
+        <div class="detail-container" id="detail-container"  *ngIf="showDetail" 
+        [ngStyle]="{'background-image': movieDetailBackgroundPath ? movieDetailBackgroundPath : null}">
+          <div class="inner-container">
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-12 col-md-10 offset-md-1 detail-card">
+                  <div class="image-container col-xs-12 col-md-4 col-lg-5">
+                    <img *ngIf="posterPath" [src]="posterPath" alt="poster"/>
+                  </div>
+                  <div class="info-container col-xs-12 col-md-8 col-lg7">
+     
+                   <div class="inner-content">
+                     <h2 class="movie-title">{{movieDetail.title}}</h2>
+                     <h4 class="movie-tagline">{{movieDetail.tagline}}</h4>
+                   <p class="movie-overview">{{movieDetail.overview}}</p>
+     
+                   <div class="stats-container" [ngClass]="{'center': !movieDetail.budget && !movieDetail.revenue && !movieDetail.vote_average || movieDetail.vote_average === 0}" >
+                     <div class="stats-column">
+                       <div class="stats-category" *ngIf="movieDetail.release_date">
+                         <h5 class="stats-title">Release date:</h5>
+                         <div class="stats-info">{{movieDetail.release_date}}</div>
+                       </div>
+                       <div class="stats-category" *ngIf="movieDetail.budget && movieDetail.revenue">
+                         <h5 class="stats-title">Budget:</h5>
+                         <div class="stats-info">{{moneyFormatting(movieDetail.budget)}}</div>
+                       </div>
+                     </div>
+                     <div class="stats-column">
+                       <div class="stats-category" *ngIf="movieDetail.vote_average && movieDetail.vote_average > 0">
+                         <h5 class="stats-title">Vote Average:</h5>
+                         <div class="stats-info">{{movieDetail.vote_average}}</div>
+                       </div>
+                        <div class="stats-category" *ngIf="movieDetail.budget && movieDetail.revenue">
+                         <h5 class="stats-title">Revenue:</h5>
+                         <div class="stats-info">{{moneyFormatting(movieDetail.revenue)}}</div>
+                       </div>
+                     </div>
+                   </div>
+                   </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+     
+          </div>
+     
+        </div>
+       </div>
+</div>

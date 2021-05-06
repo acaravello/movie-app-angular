@@ -1,15 +1,39 @@
+<div class="popular-movies-container">
+
+  <div class="select-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Order Movies:</mat-label>
+      <mat-select [(value)]="sortingSelected" (selectionChange)="sortMovies()">
+        <mat-option value="none">None</mat-option>
+        <mat-option value="vote-desc">By Vote - Desc</mat-option>
+        <mat-option value="vote-asc">By Vote - Asc</mat-option>
+        <mat-option value="release-desc">By Release - Desc</mat-option>
+        <mat-option value="release-asc">By Release - Asc</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
 
 
-<div class="movies-list-container">
-    <div class="cards-container" >
-      <div class="card" *ngFor="let movie of moviesList">
+  <div class="movies-list-container">
+    <div class="cards-container">
+      <div class="card" *ngFor="let movie of movieListSorted" (click)="toMovieDetail(movie.id)">
         <img [src]="imageRootPath + movie.poster_path" class="card-img-top" [alt]="movie.title" />
         <div class="card-body">
-          <h5 class="card-title">{{movie.title}}</h5>
+          <div class="title-container">
+            <h5 class="card-title">{{movie.title}}</h5>
+            <div class="star-container">
+              <span class="material-icons">grade</span>
+              {{movie.vote_average}}
+            </div>
+          </div>
+          <div class="release-date">Release: {{movie.release_date}}</div>
           <p class="card-text">
             {{movie.overview}}
           </p>
+
         </div>
       </div>
     </div>
   </div>
+
+</div>

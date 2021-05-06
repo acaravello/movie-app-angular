@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
+import tempAPI from "../../../assets/tempAPI";
 import {Router} from "@angular/router"
 
 @Injectable()
@@ -11,6 +12,8 @@ export class MovieDetailService implements Resolve<any>
 {
 
     onMovieDetailChanged: BehaviorSubject<any>;
+    movieDetail: any;
+    movieDetailId: string;
     
     constructor(
         private httpClient: HttpClient,
@@ -22,6 +25,8 @@ export class MovieDetailService implements Resolve<any>
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any
     {
+        this.movieDetailId = route.params["movieId"];
+
         return new Promise((resolve, reject) => {
             
             Promise.all([this.getMovieDetail()])
@@ -39,36 +44,26 @@ export class MovieDetailService implements Resolve<any>
 
             return new Promise((resolve, reject) => { 
 
-                resolve(null);
+                let reqHeader = new HttpHeaders({ 
+                    'Content-Type': 'application/json',
+                 });
 
-                // const token = this.authService.getToken();
-                // let reqHeader = new HttpHeaders({ 
-                //     'Content-Type': 'application/json',
-                //     'Authorization': 'Bearer ' + token
-                //  });
+                 this.httpClient.get(`https://api.themoviedb.org/3/movie/${this.movieDetailId}?api_key=${tempAPI}&language=en-US`, {headers: reqHeader})
+                     .subscribe((response: any) => {
+
+                        console.log("Movie detail response")
+                        console.log(response)
+
+                        this.movieDetail = {...response}
+                        this.onMovieDetailChanged.next(this.movieDetail);
+                        resolve(response);
+
+                        }, err => {
+                         console.log("error in contacting movie db");
+                         console.log(err)
+                     }, reject);
         
-                //  this._httpClient.get(backendAddress + "hr/api/v1/user/list", {headers: reqHeader})
-                //      .subscribe((response: any) => {
 
-                //         this.allContactsReal = [...response];
-                //         this.filterContacts();
-
-                //         console.log("Contacts real are");
-                //         console.log(this.contactsReal);
-
-                //         resolve(this.contactsReal);
-
-                //         }, err => {
-
-                //          console.log("error in contacting be");
-                //          console.log(err)
-                //          if(err.error && err.error.status === "400.001") {
-                //              console.log("Token is expired")
-                //              this.authService.userLogout();
-                //              this.router.navigate(["/login"]);
-                //          }
-
-                //      }, reject);
         
                 }
             );

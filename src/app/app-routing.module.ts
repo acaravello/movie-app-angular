@@ -8,7 +8,7 @@ const routes: Routes = [
     loadChildren: './layout/search/search.module#SearchModule'
 },
 {
-    path        : 'detail',
+    path        : 'detail/:movieId',
     loadChildren: './layout/movie-detail/movie-detail.module#MovieDetailModule'
 },
 {
