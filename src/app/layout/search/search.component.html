@@ -1,2 +1,35 @@
 
-<h1>Search Component</h1>
+<div class="search-container">
+    <div class="mat-input-container">
+
+        <form class="search-form">
+            <mat-form-field class="search-full-width">
+                <mat-label>Search for a movie</mat-label>
+                <input matInput [(ngModel)]="inputTyped" name="inputTyped" (keyup)="onFinishingTyping()">
+            </mat-form-field>
+        </form>
+    </div>
+</div>
+
+<div class="movies-list-container">
+    <div class="cards-container">
+        <div class="card" *ngFor="let movie of moviesList" (click)="toMovieDetail(movie.id)">
+            <img [src]="imageRootPath + movie.poster_path" class="card-img-top" [alt]="movie.title" />
+            <div class="card-body">
+                <div class="title-container">
+                    <h5 class="card-title">{{movie.title}}</h5>
+                    <div class="star-container">
+                        <span class="material-icons">grade</span>
+                        {{movie.vote_average}}
+                    </div>
+                </div>
+                <div class="release-date">Release: {{movie.release_date}}</div>
+                <p class="card-text">
+                    {{movie.overview}}
+                </p>
+
+            </div>
+        </div>
+    </div>
+</div>
+  

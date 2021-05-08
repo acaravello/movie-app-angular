@@ -1,12 +1,9 @@
 
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
-
+import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
+import { BehaviorSubject, Observable } from 'rxjs';
 import tempAPI from "../../../assets/tempAPI";
-
-import {Router} from "@angular/router"
 
 @Injectable()
 export class PopularMoviesService implements Resolve<any>
@@ -17,13 +14,12 @@ export class PopularMoviesService implements Resolve<any>
     
     constructor(
         private httpClient: HttpClient,
-        private router: Router,
     )
     {
         this.onMovieListChanged = new BehaviorSubject([]);
     }
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any
+    resolve(route: ActivatedRouteSnapshot): Observable<any> | Promise<any> | any
     {
         return new Promise((resolve, reject) => {
             
@@ -36,7 +32,6 @@ export class PopularMoviesService implements Resolve<any>
             );
         });
     }
-
     
     getPopularMovies(): Promise<any> {
 
@@ -63,6 +58,5 @@ export class PopularMoviesService implements Resolve<any>
                 }
             );
     }
-
 
 }

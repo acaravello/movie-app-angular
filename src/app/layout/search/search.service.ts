@@ -1,77 +1,59 @@
 
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
-
-import {Router} from "@angular/router"
+import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
+import { BehaviorSubject, Observable } from 'rxjs';
+import tempAPI from "../../../assets/tempAPI";
 
 @Injectable()
 export class SearchService implements Resolve<any>
 {
 
     onSearchResultsChanged: BehaviorSubject<any>;
+    searchResult: any[]; 
     
     constructor(
-        private httpClient: HttpClient,
-        private router: Router,
+        private httpClient: HttpClient
     )
     {
         this.onSearchResultsChanged = new BehaviorSubject([]);
     }
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any
+    resolve(route: ActivatedRouteSnapshot): Observable<any> | Promise<any> | any
     {
-        return new Promise((resolve, reject) => {
-            
-            Promise.all([this.getMovieDetail()])
-            .then(
-                ([files]) => {
-                    resolve(null);
-                },
-                reject
-            );
-        });
     }
-
     
-    getMovieDetail(): Promise<any> {
+    getSearchResult(searchInput: string): Promise<any> {
 
-            return new Promise((resolve, reject) => { 
+        return new Promise((resolve, reject) => { 
 
-                resolve(null);
+            let reqHeader = new HttpHeaders({ 
+                'Content-Type': 'application/json',
+             });
 
-                // const token = this.authService.getToken();
-                // let reqHeader = new HttpHeaders({ 
-                //     'Content-Type': 'application/json',
-                //     'Authorization': 'Bearer ' + token
-                //  });
-        
-                //  this._httpClient.get(backendAddress + "hr/api/v1/user/list", {headers: reqHeader})
-                //      .subscribe((response: any) => {
+             this.httpClient.get(`https://api.themoviedb.org/3/search/movie?api_key=${tempAPI}&language=en-US&query=${searchInput}&page=1`, {headers: reqHeader})
+                 .subscribe((response: any) => {
 
-                //         this.allContactsReal = [...response];
-                //         this.filterContacts();
+                     let responseDataFiltered = [...response.results];
+                     for (let i = 0; i < responseDataFiltered.length; i++) {
+                         if (!responseDataFiltered[i].poster_path || !responseDataFiltered[i].release_date || responseDataFiltered[i].release_date.length === 0) {
+                             responseDataFiltered.splice(i, 1);
+                             i--;
+                         }
+                     }
 
-                //         console.log("Contacts real are");
-                //         console.log(this.contactsReal);
+                    this.searchResult = [...responseDataFiltered];
+                    this.onSearchResultsChanged.next(this.searchResult);
+                    resolve(response);
 
-                //         resolve(this.contactsReal);
+                    }, err => {
+                     console.log("error in contacting movie db");
+                     console.log(err)
+                 }, reject);
+    
+            }
+        );
 
-                //         }, err => {
-
-                //          console.log("error in contacting be");
-                //          console.log(err)
-                //          if(err.error && err.error.status === "400.001") {
-                //              console.log("Token is expired")
-                //              this.authService.userLogout();
-                //              this.router.navigate(["/login"]);
-                //          }
-
-                //      }, reject);
-        
-                }
-            );
     }
 
 }

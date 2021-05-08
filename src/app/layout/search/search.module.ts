@@ -11,8 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { SearchComponent } from './search.component';
 import { SearchService } from './search.service';
-
-
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
     {
@@ -30,6 +29,7 @@ const routes: Routes = [
     ],
     imports        : [
         RouterModule.forChild(routes),
+        FormsModule,
         CommonModule,
         MatButtonModule,
         MatCheckboxModule,

@@ -12,7 +12,6 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MovieDetailComponent } from './movie-detail.component';
 import { MovieDetailService } from './movie-detail.service';
 
-
 const routes: Routes = [
     {
         path     : '**',
@@ -43,6 +42,7 @@ const routes: Routes = [
         MovieDetailService
     ],
 })
+
 export class MovieDetailModule
 {
 }

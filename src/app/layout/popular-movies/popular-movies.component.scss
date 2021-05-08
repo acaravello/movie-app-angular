@@ -2,7 +2,6 @@
  .popular-movies-container {
   padding-top: 120px;
  
- 
  .select-container {
     display: flex;
     width: 100%;
@@ -13,7 +12,7 @@
 
     //overriding material select colors
     ::ng-deep .mat-form-field-flex {
-      background-color: #d81b60 !important;
+      background-color: #d81b60;
     }
 
     ::ng-deep .mat-select-value, ::ng-deep .mat-form-field-label, ::ng-deep .mat-select-arrow {
@@ -25,9 +24,12 @@
         color: #fff;
       }
     }
+
+    ::ng-deep .mat-focused .mat-form-field-ripple {
+      background-color: #d81b60 !important;
+    }
     /*****/
  }
- 
  
  .movies-list-container {
     display: flex;

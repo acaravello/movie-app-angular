@@ -1,11 +1,9 @@
 
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
-
+import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
+import { BehaviorSubject, Observable } from 'rxjs';
 import tempAPI from "../../../assets/tempAPI";
-import {Router} from "@angular/router"
 
 @Injectable()
 export class MovieDetailService implements Resolve<any>
@@ -17,13 +15,12 @@ export class MovieDetailService implements Resolve<any>
     
     constructor(
         private httpClient: HttpClient,
-        private router: Router,
     )
     {
         this.onMovieDetailChanged = new BehaviorSubject([]);
     }
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any
+    resolve(route: ActivatedRouteSnapshot): Observable<any> | Promise<any> | any
     {
         this.movieDetailId = route.params["movieId"];
 
@@ -62,8 +59,6 @@ export class MovieDetailService implements Resolve<any>
                          console.log("error in contacting movie db");
                          console.log(err)
                      }, reject);
-        
-
         
                 }
             );

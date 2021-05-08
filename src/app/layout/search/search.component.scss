@@ -1,0 +1,148 @@
+
+
+ .search-container {
+    padding-top: 120px;
+   
+   .mat-input-container {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      width: 100%;
+      margin-top: 10px;
+      max-width: 860px;
+      margin:auto;
+      margin-top: 60px;
+
+      .search-form {
+          width: 100%;
+
+          .search-full-width {
+              width: 100%;
+          }
+      }
+
+      //overriding material input colors
+      ::ng-deep .mat-form-field-flex {
+        padding: 6px 8px;
+        border-bottom: 1.5px solid #d81b60;
+        border-radius: 0px;
+      }
+
+      ::ng-deep .mat-input-element, ::ng-deep .mat-form-field-label{
+        color: #fff;
+      }
+
+      ::ng-deep .mat-focused .mat-form-field-ripple {
+        background-color: #d81b60 !important;
+      }
+      /*****/
+   }
+}
+
+.movies-list-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 48px auto 24px auto;
+
+    .button-container {
+      width: 200px;
+      display: flex;
+      justify-content: center;
+      margin:auto;
+    }
+
+    .cards-container {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      width: 100%;
+      justify-content: center;
+
+      .card {
+            display: flex;
+            min-width: 0;
+            background-clip: border-box;
+            border-radius: 0px;
+            flex-direction: column;
+            width: 18rem;
+            margin-left: 24px;
+            margin-right: 24px;
+            margin-bottom: 48px;
+            border:none;
+            box-shadow:  0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+            cursor: pointer;
+            opacity:1;
+            transition: opacity 0.8s ease;
+            background: linear-gradient(to bottom, #212121, #D81B60);
+            transform: none;
+            transition: opacity 800ms ease, transform 800ms ease;
+
+            &:hover {
+              opacity: 0.9;
+              transform: translateY(-5px);
+            }
+
+            h5 {
+              text-transform: uppercase;
+              color: #E1E2E1;
+              font-size: 14px;
+              margin-bottom: 0px;
+            }
+
+            img {
+              border-radius: 0px;
+            }
+
+            .card-body {
+            background: #35495E;
+            background: linear-gradient(to bottom, #212121, #D81B60);
+
+            .title-container {
+              display: flex;
+              justify-content: space-between;
+              border-bottom: 1px solid #d81b60;
+              margin-bottom: 10px; 
+              align-items: center;
+              padding-bottom: 5px;
+              flex-wrap: wrap;
+
+              .star-container {
+                color: #fff;
+
+                .material-icons {
+                  font-size: 12px;
+                  color: #fdd835;
+                }
+              }
+            }
+
+            .release-date {
+              color: #efefef;
+              margin-bottom: 5px;
+              font-size: 13px;
+            }
+
+              .card-text {
+              font-size: 13px;
+              line-height: 22px;
+              color: #fff;
+              }
+
+              
+            }
+      }
+    }
+
+  }
+
+  $small: 991px;
+  @media screen and (max-width: $small) {
+
+    .search-container {
+      width: auto;
+      margin-right: 40px;
+      margin-left: 40px;
+    }
+
+  }

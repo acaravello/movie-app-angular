@@ -13,13 +13,12 @@ import { Subject } from 'rxjs';
   export class MovieDetailComponent implements OnInit {
     
     movieDetail: any;
-    private unsubscribeAll: Subject<any>;
     showDetail: boolean = false;
     posterPath: string = null;
     backgroundImagePath: string = "https://image.tmdb.org/t/p/original";
     movieDetailBackgroundPath: string = null;
+    private unsubscribeAll: Subject<any>;
 
-  
     constructor(private router: Router, private movieDetailService: MovieDetailService) {
       this.unsubscribeAll = new Subject();
     }
