@@ -123,8 +123,13 @@
               "devServerTarget": "movie-app-angular:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
-    }},
+    }
+  },
   "defaultProject": "movie-app-angular"
 }

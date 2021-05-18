@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "angular-movie-app-fce92"
+  },
+  "targets": {
+    "angular-movie-app-fce92": {
+      "hosting": {
+        "movie-app-angular": [
+          "angular-movie-app-fce92"
+        ]
+      }
+    }
+  }
+}
