@@ -17,7 +17,7 @@
 
   <div class="movies-list-container">
     <div class="cards-container">
-      <div class="card" *ngFor="let movie of movieListSorted" (click)="toMovieDetail(movie.id)">
+      <div class="card" *ngFor="let movie of movieListSorted | paginate: { itemsPerPage: 20, currentPage: currentPage, totalItems: totalMovies }" (click)="toMovieDetail(movie.id)">
         <img [src]="imageRootPath + movie.poster_path" class="card-img-top" [alt]="movie.title" />
         <div class="card-body">
           <div class="title-container">
@@ -34,6 +34,7 @@
 
         </div>
       </div>
+      <pagination-controls (pageChange)="onPageChanged($event)"></pagination-controls>
     </div>
   </div>
 

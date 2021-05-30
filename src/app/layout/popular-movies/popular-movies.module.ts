@@ -12,6 +12,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { PopularMoviesComponent } from './popular-movies.component';
 import { PopularMoviesService } from './popular-movies.service';
 import { MatCardModule, MatSelectModule } from '@angular/material';
+import { NgxPaginationModule } from 'ngx-pagination';
+
 
 
 const routes: Routes = [
@@ -30,6 +32,7 @@ const routes: Routes = [
     ],
     imports        : [
         RouterModule.forChild(routes),
+        NgxPaginationModule,
         CommonModule,
         MatCardModule,
         MatButtonModule,

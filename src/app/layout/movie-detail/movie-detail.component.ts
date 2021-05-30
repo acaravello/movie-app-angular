@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import { MovieDetailService } from './movie-detail.service';
 import { takeUntil, } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { Location } from '@angular/common';
 
 @Component({
     selector: 'movie-detail',
@@ -19,7 +20,7 @@ import { Subject } from 'rxjs';
     movieDetailBackgroundPath: string = null;
     private unsubscribeAll: Subject<any>;
 
-    constructor(private router: Router, private movieDetailService: MovieDetailService) {
+    constructor(private router: Router, private movieDetailService: MovieDetailService, private location: Location) {
       this.unsubscribeAll = new Subject();
     }
   
@@ -51,6 +52,10 @@ import { Subject } from 'rxjs';
       } else {
         return null;
       }
+    }
+
+    goingBack() {
+      this.location.back();
     }
   
   }

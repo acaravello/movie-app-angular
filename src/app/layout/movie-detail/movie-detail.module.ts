@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MovieDetailComponent } from './movie-detail.component';
 import { MovieDetailService } from './movie-detail.service';
+import { BackIconComponent } from './back-icon.component';
 
 const routes: Routes = [
     {
@@ -25,6 +26,7 @@ const routes: Routes = [
 @NgModule({
     declarations   : [
         MovieDetailComponent,
+        BackIconComponent
     ],
     imports        : [
         RouterModule.forChild(routes),

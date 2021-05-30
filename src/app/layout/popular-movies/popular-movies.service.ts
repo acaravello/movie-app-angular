@@ -10,7 +10,7 @@ export class PopularMoviesService implements Resolve<any>
 {
 
     onMovieListChanged: BehaviorSubject<any>;
-    popularMovies: any[]; 
+    popularMovies: any; 
     
     constructor(
         private httpClient: HttpClient,
@@ -22,8 +22,7 @@ export class PopularMoviesService implements Resolve<any>
     resolve(route: ActivatedRouteSnapshot): Observable<any> | Promise<any> | any
     {
         return new Promise((resolve, reject) => {
-            
-            Promise.all([this.getPopularMovies()])
+            Promise.all([this.getPopularMovies(localStorage.getItem("currentMoviePage"))])
             .then(
                 ([files]) => {
                     resolve(null);
@@ -33,7 +32,7 @@ export class PopularMoviesService implements Resolve<any>
         });
     }
     
-    getPopularMovies(): Promise<any> {
+    getPopularMovies(page = "1"): Promise<any> {
 
             return new Promise((resolve, reject) => { 
 
@@ -41,12 +40,11 @@ export class PopularMoviesService implements Resolve<any>
                     'Content-Type': 'application/json',
                  });
 
-                 this.httpClient.get(`https://api.themoviedb.org/3/discover/movie?api_key=${tempAPI}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1`, {headers: reqHeader})
+                 this.httpClient.get(`https://api.themoviedb.org/3/discover/movie?api_key=${tempAPI}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}`, {headers: reqHeader})
                      .subscribe((response: any) => {
-
-                        this.popularMovies = [...response.results]
-                        console.log("Popular movies are");
-                        console.log(this.popularMovies)
+                        
+                        this.popularMovies = {...response}
+                        localStorage.setItem("currentMoviePage", this.popularMovies.page);
                         this.onMovieListChanged.next(this.popularMovies);
                         resolve(response);
 

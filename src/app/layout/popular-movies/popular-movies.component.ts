@@ -19,6 +19,9 @@ import { PopularMoviesService } from './popular-movies.service';
 
     
     sortingSelected: string = "";
+    totalPages: number;
+    currentPage: number;
+    totalMovies: number;
 
     constructor(
       private router: Router,
@@ -32,11 +35,13 @@ import { PopularMoviesService } from './popular-movies.service';
 
      this.popularMoviesService.onMovieListChanged
             .pipe(takeUntil(this.unsubscribeAll))
-            .subscribe(movies => {
-                this.moviesList = movies;
-                this.movieListSorted = movies;
-                console.log("Movie list in component");
-                console.log(this.moviesList)
+            .subscribe(moviesInfo => {
+                this.moviesList = [...moviesInfo.results];
+                this.movieListSorted = [...moviesInfo.results];
+                this.totalPages = moviesInfo.total_pages;
+                this.totalMovies = moviesInfo.total_results;
+                this.currentPage = moviesInfo.page;
+                window.scroll(0,0);
             });
     }
 
@@ -79,6 +84,11 @@ import { PopularMoviesService } from './popular-movies.service';
 
     toMovieDetail(movieId: string) {
       this.router.navigate(['detail/' + movieId]);
+    }
+
+    onPageChanged(page) {
+      this.currentPage = page;
+      this.popularMoviesService.getPopularMovies(page)
     }
   
   }

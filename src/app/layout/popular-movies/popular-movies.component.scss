@@ -128,4 +128,19 @@
 
   }
 
+     ::ng-deep .ngx-pagination {
+       a {
+         color: #fff;
+
+         &:hover {
+           text-decoration: none;
+           background: #d81b60;
+           opacity: .8;
+         }
+       }
+      .current {
+        background: #d81b60;
+      }
+    }
+
 }
