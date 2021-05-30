@@ -22,6 +22,7 @@ import { PopularMoviesService } from './popular-movies.service';
     totalPages: number;
     currentPage: number;
     totalMovies: number;
+    showAnimation: boolean = true;
 
     constructor(
       private router: Router,
@@ -41,6 +42,7 @@ import { PopularMoviesService } from './popular-movies.service';
                 this.totalPages = moviesInfo.total_pages;
                 this.totalMovies = moviesInfo.total_results;
                 this.currentPage = moviesInfo.page;
+                this.showAnimation = false;
                 window.scroll(0,0);
             });
     }

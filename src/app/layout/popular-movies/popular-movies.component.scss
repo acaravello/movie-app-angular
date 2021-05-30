@@ -30,6 +30,65 @@
     }
     /*****/
  }
+
+ .dots-animation-container {
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   padding-top: 50px;
+   padding-bottom:50px; 
+
+   .dots-animation {
+    width: 60px;
+    height:34px;
+    background: 
+      radial-gradient(circle closest-side,#d81b60 90%,#212529) 0%   50%,
+      radial-gradient(circle closest-side,#d81b60 90%, #212529) 50%  50%,
+      radial-gradient(circle closest-side,#d81b60 90%,#212529) 100% 50%;
+    background-size:calc(100%/3) 22px;
+    background-repeat: no-repeat;
+    animation:d3 1s infinite linear;
+  }
+  @keyframes d3 {
+      20%{background-position:0%   0%, 50%  50%,100%  50%}
+      40%{background-position:0% 100%, 50%   0%,100%  50%}
+      60%{background-position:0%  50%, 50% 100%,100%   0%}
+      80%{background-position:0%  50%, 50%  50%,100% 100%}
+  }
+
+ }
+
+   
+
+
+
+
+
+
+
+
+
+//   .dots-animation {
+//     width:32px;
+//     height:32px;
+//     --c:radial-gradient(circle closest-side,#d81b60 90%, #000);
+//     background: 
+//       var(--c) 0    0,
+//       var(--c) 0    100%,
+//       var(--c) 100% 100%;
+//     background-size:12px 12px;
+//     background-repeat: no-repeat;
+//     animation:d1 1s infinite linear;
+//   }
+//   @keyframes d1 {
+//       25% {background-position:100% 0   ,0 100%,100% 100%}
+//       50% {background-position:100% 0   ,0 0   ,100% 100%}
+//       75% {background-position:100% 0   ,0 0   ,0    100%}
+//       100%{background-position:100% 100%,0 0   ,0    100%}
+//   }
+//  }
+ 
+
  
  .movies-list-container {
     display: flex;

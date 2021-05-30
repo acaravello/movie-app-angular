@@ -1,6 +1,6 @@
 
 
 <nav class="navigation-navbar">
-    <a routerLink = "/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" mat-button>Home</a>
+    <a routerLink = "/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" mat-button (click)="resetPagination()">Home</a>
     <a routerLink = "/search" [routerLinkActive]="['active']" mat-button>Search</a>
   </nav>

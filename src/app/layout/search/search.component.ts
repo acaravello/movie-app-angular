@@ -16,6 +16,7 @@ import { SearchService } from './search.service';
     inputTyped: string = "";
     inputSearched: string = "";
     timeout: any;
+    showAnimation: boolean = false;
     imageRootPath: string = "https://image.tmdb.org/t/p/original";
     private unsubscribeAll: Subject<any>;
   
@@ -31,8 +32,7 @@ import { SearchService } from './search.service';
       .pipe(takeUntil(this.unsubscribeAll))
       .subscribe(movies => {
           this.moviesList = movies;
-          console.log("Movie list in search component");
-          console.log(this.moviesList)
+          this.showAnimation = false;
       });
     }
 
@@ -43,10 +43,11 @@ import { SearchService } from './search.service';
           if(this.inputTyped !== this.inputSearched) {
             this.searchService.getSearchResult(this.inputTyped)
             this.inputSearched = this.inputTyped;
+            this.showAnimation = true;
           }
           
         }
-      }, 1500);
+      }, 800);
     }
 
     toMovieDetail(movieId: string) {

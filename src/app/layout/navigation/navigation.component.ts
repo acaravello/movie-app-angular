@@ -17,5 +17,9 @@ import {Router} from "@angular/router";
     ngOnInit(): void {
      
     }
+
+    resetPagination() {
+      localStorage.clear();
+    }
   
   }
