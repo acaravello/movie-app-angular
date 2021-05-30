@@ -20,7 +20,7 @@ import { PopularMoviesService } from './popular-movies.service';
     
     sortingSelected: string = "";
     totalPages: number;
-    currentPage: number;
+    currentPage: string;
     totalMovies: number;
     showAnimation: boolean = true;
 
@@ -33,6 +33,9 @@ import { PopularMoviesService } from './popular-movies.service';
      }
   
     ngOnInit(): void {
+
+   
+    localStorage.getItem("sorted_by") && (this.sortingSelected = localStorage.getItem("sorted_by"));
 
      this.popularMoviesService.onMovieListChanged
             .pipe(takeUntil(this.unsubscribeAll))
@@ -48,40 +51,46 @@ import { PopularMoviesService } from './popular-movies.service';
     }
 
     sortMovies() {
+      
+      localStorage.setItem("sorted_by", this.sortingSelected);
+      this.showAnimation = true;
+      this.popularMoviesService.getPopularMovies(this.currentPage, this.sortingSelected);
 
-      let sortedArray = [...this.moviesList];
-      switch(this.sortingSelected) {
+      //FE sorting - in case you wanna switch
 
-        case 'vote-desc':
-          sortedArray.sort((a,b) => {
-            return Number(b.vote_average) - Number(a.vote_average);
-          });
-          break;
+      // let sortedArray = [...this.moviesList];
+      // switch(this.sortingSelected) {
 
-        case 'vote-asc': 
-        sortedArray.sort((a,b) => {
-          return Number(a.vote_average) - Number(b.vote_average);
+      //   case 'vote-desc':
+      //     sortedArray.sort((a,b) => {
+      //       return Number(b.vote_average) - Number(a.vote_average);
+      //     });
+      //     break;
+
+      //   case 'vote-asc': 
+      //   sortedArray.sort((a,b) => {
+      //     return Number(a.vote_average) - Number(b.vote_average);
           
-        });
-        break;
+      //   });
+      //   break;
 
-        case 'release-desc':
-          sortedArray.sort((a,b) => {
-            return +new Date(b.release_date) - +new Date(a.release_date);
-          });
-          break;
+      //   case 'release-desc':
+      //     sortedArray.sort((a,b) => {
+      //       return +new Date(b.release_date) - +new Date(a.release_date);
+      //     });
+      //     break;
         
-        case 'release-asc':
-          sortedArray.sort((a, b) => {
-            return +new Date(a.release_date) - +new Date(b.release_date);
-          });
-          break;
+      //   case 'release-asc':
+      //     sortedArray.sort((a, b) => {
+      //       return +new Date(a.release_date) - +new Date(b.release_date);
+      //     });
+      //     break;
 
-        default:
-          break;
-      }
+      //   default:
+      //     break;
+      // }
 
-      this.movieListSorted = [...sortedArray];
+      // this.movieListSorted = [...sortedArray];
     }
 
     toMovieDetail(movieId: string) {
@@ -90,6 +99,7 @@ import { PopularMoviesService } from './popular-movies.service';
 
     onPageChanged(page) {
       this.currentPage = page;
+      this.showAnimation = true;
       this.popularMoviesService.getPopularMovies(page)
     }
   

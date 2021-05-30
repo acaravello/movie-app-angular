@@ -32,7 +32,7 @@ export class PopularMoviesService implements Resolve<any>
         });
     }
     
-    getPopularMovies(page = "1"): Promise<any> {
+    getPopularMovies(page = "1", sortingBy = "popularity.desc"): Promise<any> {
 
             return new Promise((resolve, reject) => { 
 
@@ -40,10 +40,16 @@ export class PopularMoviesService implements Resolve<any>
                     'Content-Type': 'application/json',
                  });
 
-                 this.httpClient.get(`https://api.themoviedb.org/3/discover/movie?api_key=${tempAPI}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}`, {headers: reqHeader})
+                 this.httpClient.get(`https://api.themoviedb.org/3/discover/movie?api_key=${tempAPI}&language=en-US&sort_by=${sortingBy}&include_adult=false&include_video=false&page=${page}`, {headers: reqHeader})
                      .subscribe((response: any) => {
                         
                         this.popularMovies = {...response}
+                        for(let i = 0; i < this.popularMovies.results.length; i++) {
+                            if( !this.popularMovies.results[i].poster_path) {
+                                this.popularMovies.results.splice(i, 1);
+                                i--;
+                            }
+                        }
                         localStorage.setItem("currentMoviePage", this.popularMovies.page);
                         this.onMovieListChanged.next(this.popularMovies);
                         resolve(response);

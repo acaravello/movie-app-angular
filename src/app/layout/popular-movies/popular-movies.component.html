@@ -5,11 +5,11 @@
     <mat-form-field appearance="fill">
       <mat-label>Order Movies:</mat-label>
       <mat-select [(value)]="sortingSelected" (selectionChange)="sortMovies()">
-        <mat-option value="none">None</mat-option>
-        <mat-option value="vote-desc">By Vote - Desc</mat-option>
-        <mat-option value="vote-asc">By Vote - Asc</mat-option>
-        <mat-option value="release-desc">By Release - Desc</mat-option>
-        <mat-option value="release-asc">By Release - Asc</mat-option>
+        <mat-option value="popularity.desc">None</mat-option>
+        <mat-option value="vote_average.desc">By Vote - Desc</mat-option>
+        <mat-option value="vote_average.asc">By Vote - Asc</mat-option>
+        <mat-option value="primary_release_date.desc">By Release - Desc</mat-option>
+        <mat-option value="primary_release_date.asc">By Release - Asc</mat-option>
       </mat-select>
     </mat-form-field>
   </div>
@@ -22,7 +22,8 @@
   <ng-template #moviesTemplate>
     <div class="movies-list-container">
       <div class="cards-container">
-        <div class="card" *ngFor="let movie of movieListSorted | paginate: { itemsPerPage: 20, currentPage: currentPage, totalItems: totalMovies }" (click)="toMovieDetail(movie.id)">
+        <div class="card" *ngFor="let movie of movieListSorted | paginate: { itemsPerPage: 20, currentPage: currentPage, totalItems: totalMovies }" 
+        (click)="toMovieDetail(movie.id)">
           <img [src]="imageRootPath + movie.poster_path" class="card-img-top" [alt]="movie.title" />
           <div class="card-body">
             <div class="title-container">
