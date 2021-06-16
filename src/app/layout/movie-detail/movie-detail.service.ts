@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
-import tempAPI from "../../../assets/tempAPI";
+import tempAPI from "../../../assets/api";
 
 @Injectable()
 export class MovieDetailService implements Resolve<any>
