@@ -21,8 +21,12 @@ export class PopularMoviesService implements Resolve<any>
 
     resolve(route: ActivatedRouteSnapshot): Observable<any> | Promise<any> | any
     {
+
+        let pageSaved = localStorage.getItem("currentMoviePage");
+        if(pageSaved == undefined) pageSaved = '1';
+
         return new Promise((resolve, reject) => {
-            Promise.all([this.getPopularMovies(localStorage.getItem("currentMoviePage"))])
+            Promise.all([this.getPopularMovies(pageSaved)])
             .then(
                 ([files]) => {
                     resolve(null);
